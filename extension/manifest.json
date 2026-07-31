@@ -1,0 +1,31 @@
+{
+  "manifest_version": "0.2",
+  "name": "the-cloud",
+  "display_name": "The Cloud",
+  "version": "1.0.0",
+  "description": "Connect Claude Desktop to The Cloud (thecloud.so) — the AI-native workspace that gives every AI shared memory and real agents.",
+  "long_description": "The Cloud (thecloud.so) is the AI-native workspace that gives every AI, from Claude and ChatGPT to Gemini and local models, shared memory and real agents. This extension connects Claude Desktop to your Cloud workspace over MCP: read and write your Memory, work with Pages, Tables, Mail, Calendar, commerce, and 400+ tools — every action consent-gated and signed. Sign in happens in your browser on first use; nothing is stored in the extension itself.",
+  "author": { "name": "Teka", "url": "https://github.com/tekalabs" },
+  "homepage": "https://thecloud.so",
+  "documentation": "https://thecloud.so/connect",
+  "support": "https://thecloud.so/connect",
+  "privacy_policies": ["https://www.thecloud.so/legal/privacy"],
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "CLOUD_MCP_URL": "https://mcp.thecloud.so/mcp"
+      }
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": { "node": ">=18" }
+  },
+  "keywords": ["workspace", "memory", "agents", "mcp", "productivity", "the-cloud"],
+  "license": "MIT"
+}

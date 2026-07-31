@@ -1,0 +1,10 @@
+{
+  "name": "the-cloud-desktop-extension-server",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Stdio bridge from Claude Desktop to The Cloud's remote MCP server.",
+  "main": "index.js",
+  "dependencies": {
+    "mcp-remote": "0.1.38"
+  }
+}
