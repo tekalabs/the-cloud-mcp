@@ -14,7 +14,7 @@
   "scripts": {
     "install:server": "npm ci --prefix extension/server",
     "lint": "node scripts/lint.mjs",
-    "test": "node --test test/",
+    "test": "node --test",
     "build": "node scripts/build.mjs"
   }
 }
