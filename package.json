@@ -1,0 +1,20 @@
+{
+  "name": "the-cloud-mcp",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The Cloud desktop extension: a thin stdio bridge to The Cloud's remote MCP server.",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tekalabs/the-cloud-mcp.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "install:server": "npm ci --prefix extension/server",
+    "lint": "node scripts/lint.mjs",
+    "test": "node --test test/",
+    "build": "node scripts/build.mjs"
+  }
+}
