@@ -2,8 +2,10 @@
 
 ## Reporting a vulnerability
 
-Report vulnerabilities privately by email to
-[security@thecloud.so](mailto:security@thecloud.so).
+Report vulnerabilities through GitHub private vulnerability reporting first:
+select **Report a vulnerability** on this repository's **Security** tab.
+If you cannot use that channel, email
+[team@thecloud.so](mailto:team@thecloud.so).
 
 **Do not open a public GitHub issue, discussion or pull request for a
 vulnerability.** Public reports put users at risk before a fix ships.
