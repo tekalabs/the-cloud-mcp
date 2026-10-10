@@ -1,43 +1,52 @@
-# The Cloud — Claude Desktop Extension
+# OpenCore
 
-The Cloud (thecloud.so) is the AI-native workspace that gives every AI, from Claude and ChatGPT to Gemini and local models, shared memory and real agents.
+OpenCore -- A Responsible & Responsive Business FrameWork
 
-This extension connects Claude Desktop to your Cloud workspace over MCP: read and write your Memory, work with Pages, Tables, Mail, Calendar, commerce, and 400+ tools. Every consequential action is consent-gated, and everything an AI creates is private by default.
+This public repository is the MCP layer for The Cloud: the Claude Desktop bridge, verb catalog documentation, `server.json`, the SDK, document contracts, skills, and the [fix request door](https://github.com/tekalabs/the-cloud-mcp/issues/new). The Convex backend, memory, lanes, hosting, the Gates rail, and the shops stay private.
+
+The current [Claude Desktop extension](extension/) is a thin, self-contained stdio bridge to `https://mcp.thecloud.so/mcp`. It uses [mcp-remote](https://github.com/geelen/mcp-remote) for HTTP transport and browser OAuth, holds no credentials, and stores no data. Sign-in stays in the browser, and data flows between Claude Desktop and The Cloud over HTTPS. It supports macOS, Windows, and Linux with Node.js 18 or later.
 
 ## Install
 
-1. Download the latest `the-cloud.mcpb` from [Releases](https://github.com/tekalabs/the-cloud-mcp/releases).
-2. Double-click it (or drag it into Claude Desktop → Settings → Extensions).
-3. Use any Cloud tool in a conversation — your browser opens once to sign in to The Cloud. That's it.
+Claude Code: `claude mcp add --transport http the-cloud https://mcp.thecloud.so/mcp`
 
-No account yet? [thecloud.so](https://thecloud.so) — you're in before you sign up.
+Cursor: add `"the-cloud":{"url":"https://mcp.thecloud.so/mcp"}` under `mcpServers` in `~/.cursor/mcp.json`.
 
-## What's inside
+Codex: `codex mcp add the-cloud --url https://mcp.thecloud.so/mcp`
 
-A thin, self-contained stdio bridge (`server/index.js`) that connects Claude Desktop to The Cloud's remote MCP server at `https://mcp.thecloud.so/mcp` using [mcp-remote](https://github.com/geelen/mcp-remote) for transport and browser-based OAuth. The extension holds no credentials and stores no data; sign-in lives with your browser and The Cloud.
+For Claude Desktop, download `the-cloud.mcpb` from [Releases](https://github.com/tekalabs/the-cloud-mcp/releases), open it or drag it into Settings > Extensions, then use a Cloud tool and sign in through the browser. See the [connection guide](https://www.thecloud.so/connect) and [machine-readable catalog](https://www.thecloud.so/llms.txt).
 
-Connecting from anywhere else (Claude on the web, Cursor, any MCP client):
+## Responsible
 
-```
-claude mcp add --transport http the-cloud https://mcp.thecloud.so/mcp
-```
+- Auditable verbs, contracts, skills, and ledger shapes.
+- Consent before outward or destructive actions.
+- Visible cost ledgers and a spend guard.
+- DCO sign-off from contributors.
+- Fork pull requests run only on GitHub-hosted runners and never reach private compute.
+- Users own their data, domains, and transactions.
 
-Full tool catalog and connection guide: [thecloud.so/connect](https://thecloud.so/connect) · machine-readable: [thecloud.so/llms.txt](https://www.thecloud.so/llms.txt)
+## Responsive
 
-## Privacy Policy
+- A fix request becomes a pull request through the [open door](https://github.com/tekalabs/the-cloud-mcp/issues/new).
+- Every filing becomes a rule, a verb, or a gate.
+- A client's AI sends an improvement as a signed pull request through the gates.
 
-The Cloud's privacy policy covers data collection, usage and storage, third-party sharing, retention, and contact information:
+## Contributing
 
-- **Privacy Policy:** https://www.thecloud.so/legal/privacy
-- **Terms:** https://www.thecloud.so/legal/terms
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening an issue or pull request. Every commit must carry a [DCO](https://developercertificate.org/) sign-off.
 
-This extension itself collects nothing. All data flows directly between your Claude Desktop and The Cloud's servers over HTTPS, authenticated by the OAuth session you grant in your browser. Revoke access anytime from your Cloud account settings.
+## Security
+
+Read [SECURITY.md](SECURITY.md) to report a vulnerability privately.
+
+## Privacy
+
+The extension collects nothing. The [Privacy Policy](https://www.thecloud.so/legal/privacy) covers data collection, use, storage, sharing, retention, and contact information. The [Terms](https://www.thecloud.so/legal/terms) also apply. Access can be revoked from Cloud account settings.
 
 ## Support
 
-- Setup and usage guide: [thecloud.so/connect](https://thecloud.so/connect)
-- Contact: [thecloud.so](https://thecloud.so) — or open an issue here.
+Use the [setup and usage guide](https://www.thecloud.so/connect), [open an issue](https://github.com/tekalabs/the-cloud-mcp/issues/new), or visit [thecloud.so](https://www.thecloud.so).
 
----
+## License
 
-Built by [Teka](https://github.com/tekalabs) · The Cloud · [thecloud.so](https://thecloud.so)
+Licensed under [Apache-2.0](LICENSE). Copyright 2026 Teka Labs.
