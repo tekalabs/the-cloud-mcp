@@ -27,5 +27,5 @@
     "runtimes": { "node": ">=18" }
   },
   "keywords": ["workspace", "memory", "agents", "mcp", "productivity", "the-cloud"],
-  "license": "MIT"
+  "license": "Apache-2.0"
 }

@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  docs:
+    name: Documents and JSON
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Parse JSON
+        run: |
+          node -e 'for (const file of ["extension/manifest.json", "extension/server/package.json", "extension/server/package-lock.json"]) JSON.parse(require("fs").readFileSync(file, "utf8"))'
+      - name: Check README links
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          import re
+          import urllib.error
+          import urllib.request
+
+          readme = pathlib.Path("README.md").read_text()
+          links = re.findall(r"\[[^]]+\]\(([^)]+)\)", readme)
+          failures = []
+          for link in links:
+              if link.startswith(("https://", "http://")):
+                  request = urllib.request.Request(link, method="HEAD", headers={"User-Agent": "the-cloud-mcp-ci"})
+                  try:
+                      with urllib.request.urlopen(request, timeout=15) as response:
+                          if response.status >= 400:
+                              failures.append(f"{link}: HTTP {response.status}")
+                  except urllib.error.HTTPError as error:
+                      if error.code in (403, 405, 429):
+                          continue
+                      failures.append(f"{link}: HTTP {error.code}")
+                  except urllib.error.URLError as error:
+                      failures.append(f"{link}: {error.reason}")
+              elif not pathlib.Path(link.split("#", 1)[0]).exists():
+                  failures.append(f"{link}: local target missing")
+          if failures:
+              raise SystemExit("\n".join(failures))
+          PY
+
+  dco:
+    name: DCO
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get pull request commits
+        id: commits
+        uses: tim-actions/get-pr-commits@198af03565609bb4ed924d1260247b4881f09e7d
+        with:
+          token: ${{ github.token }}
+      - name: Check DCO sign-offs
+        uses: tim-actions/dco@f2279e6e62d5a7d9115b0cb8e837b777b1b02e21
+        with:
+          commits: ${{ steps.commits.outputs.commits }}
